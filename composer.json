@@ -1,7 +1,14 @@
 {
     "name": "accelade/widgets",
     "description": "Dashboard widgets for Laravel applications using Accelade components",
-    "keywords": ["laravel", "widgets", "dashboard", "charts", "stats", "accelade"],
+    "keywords": [
+        "laravel",
+        "widgets",
+        "dashboard",
+        "charts",
+        "stats",
+        "accelade"
+    ],
     "license": "MIT",
     "type": "library",
     "authors": [
@@ -15,6 +22,7 @@
     "homepage": "https://github.com/accelade/widgets",
     "require": {
         "php": "^8.2",
+        "accelade/accelade": "^1.0.0",
         "illuminate/support": "^11.0|^12.0",
         "illuminate/view": "^11.0|^12.0"
     },

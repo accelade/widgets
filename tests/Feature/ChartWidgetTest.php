@@ -25,7 +25,7 @@ it('can render chart widget', function () {
     expect($html)->toContain('Revenue Overview');
     expect($html)->toContain('Monthly revenue');
     expect($html)->toContain('chart-container');
-})->skip('Requires accelade/accelade package for chart component');
+});
 
 it('generates chart config', function () {
     $widget = ChartWidget::make()
@@ -86,4 +86,4 @@ it('includes filters in rendered output', function () {
     expect($html)->toContain('This Week');
     expect($html)->toContain('This Month');
     expect($html)->toContain('This Year');
-})->skip('Requires accelade/accelade package for chart component');
+});

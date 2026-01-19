@@ -19,12 +19,10 @@
     $chartId = 'chart-' . $id;
     $pollingInterval = $widget?->getPollingInterval() ?? null;
 
-    // Extract chart type and data from config for Accelade chart component
+    // Extract chart type and data from config
     $chartType = $chartConfig['type'] ?? 'line';
     $chartData = $chartConfig['data'] ?? [];
     $chartOptions = $chartConfig['options'] ?? [];
-    $chartLabels = $chartData['labels'] ?? [];
-    $chartDatasets = $chartData['datasets'] ?? [];
 @endphp
 
 <div
@@ -75,14 +73,47 @@
 
         {{-- Chart Content --}}
         <div class="fi-section-content p-6 @if($heading || $description || count($filters) > 0) pt-0 @endif">
-            <x-accelade::chart
-                :type="$chartType"
-                :labels="$chartLabels"
-                :datasets="$chartDatasets"
-                :options="$chartOptions"
-                :height="$height . 'px'"
-                :id="$chartId"
-            />
+            <div class="chart-container" style="position: relative; height: {{ $height }}px;">
+                <canvas id="{{ $chartId }}"></canvas>
+            </div>
         </div>
     </section>
 </div>
+
+@once
+    @push('scripts')
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                if (typeof Chart === 'undefined') {
+                    console.warn('Chart.js is not loaded. Please include Chart.js to render charts.');
+                    return;
+                }
+            });
+        </script>
+    @endpush
+@endonce
+
+<script>
+    (function() {
+        const chartId = @json($chartId);
+        const chartConfig = @json($chartConfig);
+
+        function initChart() {
+            if (typeof Chart === 'undefined') {
+                return;
+            }
+
+            const canvas = document.getElementById(chartId);
+            if (!canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            new Chart(ctx, chartConfig);
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initChart);
+        } else {
+            initChart();
+        }
+    })();
+</script>
