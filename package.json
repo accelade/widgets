@@ -1,0 +1,31 @@
+{
+    "name": "@accelade/widgets",
+    "version": "1.0.0",
+    "description": "Dashboard widgets for Laravel applications using Accelade components",
+    "main": "dist/widgets.js",
+    "module": "dist/widgets.esm.js",
+    "types": "dist/widgets.d.ts",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "typecheck": "tsc --noEmit",
+        "test": "vitest"
+    },
+    "keywords": [
+        "laravel",
+        "widgets",
+        "dashboard",
+        "charts",
+        "accelade"
+    ],
+    "author": "Accelade Team",
+    "license": "MIT",
+    "devDependencies": {
+        "typescript": "^5.4.0",
+        "vite": "^6.0.0",
+        "vite-plugin-dts": "^4.0.0"
+    },
+    "peerDependencies": {
+        "chart.js": "^4.0.0"
+    }
+}
